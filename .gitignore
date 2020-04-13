@@ -1,5 +1,7 @@
 /node_modules
+
 /src/*.env
 src/config/vars.js
 
 *.lock
+package-lock.json
