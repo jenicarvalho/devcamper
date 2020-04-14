@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import colors from 'colors'
 import { MONGO_URI } from './vars'
 
 const connectDB = async () => {
@@ -11,7 +12,7 @@ const connectDB = async () => {
     })
     .catch((error) => console.log(error))
 
-  console.log(`MongoDB connected: ${conn.connection.host}`)
+  console.log(`MongoDB connected: ${conn.connection.host}`.bgGreen.black)
 }
 
 export default connectDB
