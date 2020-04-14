@@ -12,7 +12,7 @@ connectDB()
 const server = app.listen(
   PORT,
   console.log(
-    `Server running in ${process.env.NODE_ENV} on PORT ${PORT}`.yellow
+    `Server running in ${process.env.NODE_ENV} on PORT ${PORT}`.bgYellow.black.bold
   )
 )
 
