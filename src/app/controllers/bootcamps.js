@@ -15,7 +15,7 @@ export const getBootcamps = async (req, res, next) => {
       data: bootcamps
     })
   } catch (error) {
-    res.status(400).json({ succes: false, error: error })
+    next(new ErrorResponse(error))
   }
 }
 
@@ -34,7 +34,7 @@ export const getBootcamp = async (req, res, next) => {
 
     res.status(200).json({ succes: true, data: bootcamp })
   } catch (error) {
-    next(new ErrorResponse(`Bootcamp not found width id of ${req.params.id}`, 404))
+    next(new ErrorResponse(error))
   }
 }
 
@@ -52,7 +52,7 @@ export const createBootcamp = async (req, res, next) => {
       data: bootcamp
     })
   } catch (error) {
-    res.status(400).json({ succes: false, error: error })
+    next(new ErrorResponse(error))
   }
 }
 
@@ -68,13 +68,14 @@ export const updateBootcamp = async (req, res, next) => {
       runValidators: true
     })
 
+
     if (!bootcamp) {
-      res.status(400).json({ succes: false })
+      return next(new ErrorResponse(`Bootcamp not found width id of ${req.params.id}`, 404))
     }
 
     res.status(200).json({ succes: true, data: bootcamp })
   } catch (error) {
-    res.status(400).json({ succes: false, error: error })
+    next(new ErrorResponse(error))
   }
 }
 
@@ -88,12 +89,12 @@ export const deleteBootcamp = async (req, res, next) => {
     const bootcamp = await Bootcamp.findByIdAndDelete(req.params.id)
 
     if (!bootcamp) {
-      res.status(400).json({ succes: false })
+      return next(new ErrorResponse(`Bootcamp not found width id of ${req.params.id}`, 404))
     }
 
     res.status(200).json({ succes: true, data: {} })
 
   } catch (error) {
-    res.status(400).json({ succes: false, error: error })
+    next(new ErrorResponse(error))
   }
 }
