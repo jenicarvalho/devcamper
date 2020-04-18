@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
+import mongoose, { Schema } from 'mongoose'
 
 const BootcampSchema = new mongoose.Schema(
   {
@@ -100,4 +101,6 @@ const BootcampSchema = new mongoose.Schema(
   }
 )
 
-module.exports = mongoose.model('Bootcamp', BootcampSchema);
+const Bootcamp = mongoose.model('Bootcamp', BootcampSchema);
+
+export default Bootcamp
